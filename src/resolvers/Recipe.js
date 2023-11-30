@@ -7,5 +7,13 @@ module.exports = {
       const limit = 3;
       return dataSources.recipesAPI.getRelatedRecipes(recipe.id, limit);
     },
+    cookware(recipe, _, { dataSources }) {
+      const cookwareNamesList = dataSources.recipesAPI.getRecipeCooware(recipe.id)
+      if (!cookwareNamesList) return
+
+      return cookwareNamesList.map((c) => ({
+        name: c,
+      }))
+    }
   },
 };
